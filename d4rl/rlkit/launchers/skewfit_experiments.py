@@ -10,10 +10,10 @@ import os.path as osp
 from rlkit.samplers.data_collector.vae_env import (
     VAEWrappedEnvPathCollector,
 )
-from rlkit.torch.her.her import HERTrainer
-from rlkit.torch.sac.policies import MakeDeterministic
-from rlkit.torch.sac.sac import SACTrainer
-from rlkit.torch.skewfit.online_vae_algorithm import OnlineVaeAlgorithm
+from rlkit.torch_d4rl.her.her import HERTrainer
+from rlkit.torch_d4rl.sac.policies import MakeDeterministic
+from rlkit.torch_d4rl.sac.sac import SACTrainer
+from rlkit.torch_d4rl.skewfit.online_vae_algorithm import OnlineVaeAlgorithm
 from rlkit.util.io import load_local_or_remote_file
 from rlkit.util.video import dump_video
 
@@ -92,13 +92,13 @@ def train_vae_and_update_variant(variant):
 
 def train_vae(variant, return_data=False):
     from rlkit.util.ml_util import PiecewiseLinearSchedule
-    from rlkit.torch.vae.conv_vae import (
+    from rlkit.torch_d4rl.vae.conv_vae import (
         ConvVAE,
     )
-    import rlkit.torch.vae.conv_vae as conv_vae
-    from rlkit.torch.vae.vae_trainer import ConvVAETrainer
+    import rlkit.torch_d4rl.vae.conv_vae as conv_vae
+    from rlkit.torch_d4rl.vae.vae_trainer import ConvVAETrainer
     from rlkit.core import logger
-    import rlkit.torch.pytorch_util as ptu
+    import rlkit.torch_d4rl.pytorch_util as ptu
     from rlkit.pythonplusplus import identity
     import torch
     beta = variant["beta"]
@@ -182,7 +182,7 @@ def generate_vae_dataset(variant):
         'non_presampled_goal_img_is_garbage', None)
     tag = variant.get('tag', '')
     from multiworld.core.image_env import ImageEnv, unormalize_image
-    import rlkit.torch.pytorch_util as ptu
+    import rlkit.torch_d4rl.pytorch_util as ptu
     info = {}
     if dataset_path is not None:
         dataset = load_local_or_remote_file(dataset_path)
@@ -444,12 +444,12 @@ def skewfit_preprocess_variant(variant):
 
 
 def skewfit_experiment(variant):
-    import rlkit.torch.pytorch_util as ptu
+    import rlkit.torch_d4rl.pytorch_util as ptu
     from rlkit.data_management.online_vae_replay_buffer import \
         OnlineVaeRelabelingBuffer
-    from rlkit.torch.networks import FlattenMlp
-    from rlkit.torch.sac.policies import TanhGaussianPolicy
-    from rlkit.torch.vae.vae_trainer import ConvVAETrainer
+    from rlkit.torch_d4rl.networks import FlattenMlp
+    from rlkit.torch_d4rl.sac.policies import TanhGaussianPolicy
+    from rlkit.torch_d4rl.vae.vae_trainer import ConvVAETrainer
 
     skewfit_preprocess_variant(variant)
     env = get_envs(variant)

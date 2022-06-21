@@ -1,0 +1,472 @@
+2022-06-18 16:16:17.135110 UTC | [999778_2022_06_18_16_15_12_0000--s-0] Epoch 0 finished
+---------------------------------------  ----------------
+replay_buffer/size                       999981
+trainer/QF1 Loss                             37.3912
+trainer/min QF1 Loss                         27.4165
+trainer/QF2 Loss                             37.4379
+trainer/min QF2 Loss                         27.4171
+trainer/Std QF1 values                        0.000221001
+trainer/Std QF2 values                        0.000264988
+trainer/QF1 in-distribution values Mean       0.00411934
+trainer/QF1 in-distribution values Std        0.0011652
+trainer/QF1 in-distribution values Max        0.00744928
+trainer/QF1 in-distribution values Min        0.00212879
+trainer/QF2 in-distribution values Mean      -0.00325131
+trainer/QF2 in-distribution values Std        0.00123997
+trainer/QF2 in-distribution values Max        5.10316e-05
+trainer/QF2 in-distribution values Min       -0.0057885
+trainer/QF1 random values Mean                0.00412293
+trainer/QF1 random values Std                 0.00116431
+trainer/QF1 random values Max                 0.0074285
+trainer/QF1 random values Min                 0.00214144
+trainer/QF2 random values Mean               -0.00325301
+trainer/QF2 random values Std                 0.00123915
+trainer/QF2 random values Max                 5.83506e-05
+trainer/QF2 random values Min                -0.00590918
+trainer/QF1 next_actions values Mean          0.00411837
+trainer/QF1 next_actions values Std           0.00117254
+trainer/QF1 next_actions values Max           0.00740012
+trainer/QF1 next_actions values Min           0.00207245
+trainer/QF2 next_actions values Mean         -0.00324909
+trainer/QF2 next_actions values Std           0.00124028
+trainer/QF2 next_actions values Max           0.0001063
+trainer/QF2 next_actions values Min          -0.00590377
+trainer/actions Mean                          0.0221362
+trainer/actions Std                           0.621416
+trainer/actions Max                           0.999527
+trainer/actions Min                          -0.999999
+trainer/rewards Mean                          3.03057
+trainer/rewards Std                           0.929723
+trainer/rewards Max                           4.6242
+trainer/rewards Min                           0.775094
+trainer/Num Q Updates                         1
+trainer/Num Policy Updates                    1
+trainer/Policy Loss                          -1.99619
+trainer/Q1 Predictions Mean                   0.00415883
+trainer/Q1 Predictions Std                    0.00119397
+trainer/Q1 Predictions Max                    0.00715911
+trainer/Q1 Predictions Min                    0.00227531
+trainer/Q2 Predictions Mean                  -0.00333013
+trainer/Q2 Predictions Std                    0.00115871
+trainer/Q2 Predictions Max                   -0.000242564
+trainer/Q2 Predictions Min                   -0.0051324
+trainer/Q Targets Mean                        3.02252
+trainer/Q Targets Std                         0.929709
+trainer/Q Targets Max                         4.61638
+trainer/Q Targets Min                         0.766318
+trainer/Log Pis Mean                         -1.99945
+trainer/Log Pis Std                           0.355447
+trainer/Log Pis Max                          -0.91147
+trainer/Log Pis Min                          -2.70684
+trainer/Policy mu Mean                        8.52476e-05
+trainer/Policy mu Std                         0.00235572
+trainer/Policy mu Max                         0.0039936
+trainer/Policy mu Min                        -0.00272209
+trainer/Policy log std Mean                  -0.00130445
+trainer/Policy log std Std                    0.000377711
+trainer/Policy log std Max                   -0.000337751
+trainer/Policy log std Min                   -0.00231484
+trainer/Alpha                                 0.9999
+trainer/Alpha Loss                           -0
+exploration/num steps total                 976
+exploration/num paths total                  58
+exploration/path length Mean                 16.8276
+exploration/path length Std                   8.00676
+exploration/path length Max                  40
+exploration/path length Min                  10
+exploration/Rewards Mean                      1.08404
+exploration/Rewards Std                       0.661575
+exploration/Rewards Max                       2.77696
+exploration/Rewards Min                      -0.581357
+exploration/Returns Mean                     18.2418
+exploration/Returns Std                      18.7838
+exploration/Returns Max                      66.476
+exploration/Returns Min                       4.019
+exploration/Actions Mean                      0.257805
+exploration/Actions Std                       0.652864
+exploration/Actions Max                       0.999158
+exploration/Actions Min                      -0.999984
+exploration/Num Paths                        58
+exploration/Average Returns                  18.2418
+evaluation/num steps total                  980
+evaluation/num paths total                    8
+evaluation/path length Mean                 122.5
+evaluation/path length Std                   11.9687
+evaluation/path length Max                  139
+evaluation/path length Min                   99
+evaluation/Rewards Mean                       0.954903
+evaluation/Rewards Std                        0.0483189
+evaluation/Rewards Max                        1.01633
+evaluation/Rewards Min                        0.771857
+evaluation/Returns Mean                     116.976
+evaluation/Returns Std                       14.0037
+evaluation/Returns Max                      138.756
+evaluation/Returns Min                       91.0413
+evaluation/Actions Mean                       8.52632e-05
+evaluation/Actions Std                        0.00237779
+evaluation/Actions Max                        0.00347284
+evaluation/Actions Min                       -0.00194568
+evaluation/Num Paths                          8
+evaluation/Average Returns                  116.976
+time/evaluation sampling (s)                  2.43342
+time/logging (s)                              0.00332092
+time/policy fn evaluation (s)                 0.818882
+time/training (s)                            55.2992
+time/epoch (s)                               58.5548
+time/total (s)                               65.557
+Epoch                                         0
+---------------------------------------  ----------------
+2022-06-18 16:17:15.451392 UTC | [999778_2022_06_18_16_15_12_0000--s-0] Epoch 1 finished
+---------------------------------------  --------------
+replay_buffer/size                       999981
+trainer/QF1 Loss                             22.7238
+trainer/min QF1 Loss                         16.1973
+trainer/QF2 Loss                             22.9435
+trainer/min QF2 Loss                         16.3306
+trainer/Std QF1 values                        2.29375
+trainer/Std QF2 values                        2.20235
+trainer/QF1 in-distribution values Mean       6.33228
+trainer/QF1 in-distribution values Std        5.52542
+trainer/QF1 in-distribution values Max       19.095
+trainer/QF1 in-distribution values Min       -3.87872
+trainer/QF2 in-distribution values Mean       6.28298
+trainer/QF2 in-distribution values Std        5.39388
+trainer/QF2 in-distribution values Max       18.6427
+trainer/QF2 in-distribution values Min       -2.77122
+trainer/QF1 random values Mean                4.74395
+trainer/QF1 random values Std                 5.7765
+trainer/QF1 random values Max                19.1405
+trainer/QF1 random values Min                -3.88241
+trainer/QF2 random values Mean                4.79777
+trainer/QF2 random values Std                 5.54911
+trainer/QF2 random values Max                18.2105
+trainer/QF2 random values Min                -2.87264
+trainer/QF1 next_actions values Mean          6.21781
+trainer/QF1 next_actions values Std           5.53909
+trainer/QF1 next_actions values Max          18.9829
+trainer/QF1 next_actions values Min          -3.97283
+trainer/QF2 next_actions values Mean          6.17997
+trainer/QF2 next_actions values Std           5.41796
+trainer/QF2 next_actions values Max          18.5031
+trainer/QF2 next_actions values Min          -2.6953
+trainer/actions Mean                          0.0304052
+trainer/actions Std                           0.614801
+trainer/actions Max                           0.999092
+trainer/actions Min                          -0.999999
+trainer/rewards Mean                          3.01398
+trainer/rewards Std                           0.98153
+trainer/rewards Max                           4.45824
+trainer/rewards Min                           0.771314
+trainer/Num Q Updates                      1001
+trainer/Num Policy Updates                 1001
+trainer/Policy Loss                          -7.60654
+trainer/Q1 Predictions Mean                   8.98394
+trainer/Q1 Predictions Std                    4.49781
+trainer/Q1 Predictions Max                   19.288
+trainer/Q1 Predictions Min                    0.405717
+trainer/Q2 Predictions Mean                   8.84784
+trainer/Q2 Predictions Std                    4.51323
+trainer/Q2 Predictions Max                   18.9369
+trainer/Q2 Predictions Min                   -0.163799
+trainer/Q Targets Mean                        8.89287
+trainer/Q Targets Std                         5.0009
+trainer/Q Targets Max                        19.1927
+trainer/Q Targets Min                         0.338622
+trainer/Log Pis Mean                         -1.58689
+trainer/Log Pis Std                           0.996247
+trainer/Log Pis Max                           2.08115
+trainer/Log Pis Min                          -4.11932
+trainer/Policy mu Mean                        0.0241444
+trainer/Policy mu Std                         0.38756
+trainer/Policy mu Max                         1.14076
+trainer/Policy mu Min                        -1.39914
+trainer/Policy log std Mean                  -0.254489
+trainer/Policy log std Std                    0.331819
+trainer/Policy log std Max                    0.733456
+trainer/Policy log std Min                   -1.04016
+trainer/Alpha                                 0.906502
+trainer/Alpha Loss                           -0.449812
+exploration/num steps total                1951
+exploration/num paths total                  64
+exploration/path length Mean                162.5
+exploration/path length Std                 100.392
+exploration/path length Max                 298
+exploration/path length Min                  25
+exploration/Rewards Mean                      2.87695
+exploration/Rewards Std                       1.12911
+exploration/Rewards Max                       5.564
+exploration/Rewards Min                       0.741957
+exploration/Returns Mean                    467.504
+exploration/Returns Std                     337.618
+exploration/Returns Max                     950.901
+exploration/Returns Min                      27.1852
+exploration/Actions Mean                      0.0668456
+exploration/Actions Std                       0.602321
+exploration/Actions Max                       0.999487
+exploration/Actions Min                      -0.999999
+exploration/Num Paths                         6
+exploration/Average Returns                 467.504
+evaluation/num steps total                 1972
+evaluation/num paths total                   26
+evaluation/path length Mean                  55.1111
+evaluation/path length Std                    1.04822
+evaluation/path length Max                   57
+evaluation/path length Min                   53
+evaluation/Rewards Mean                       1.80921
+evaluation/Rewards Std                        0.52839
+evaluation/Rewards Max                        2.89745
+evaluation/Rewards Min                        0.997263
+evaluation/Returns Mean                      99.7074
+evaluation/Returns Std                        2.48318
+evaluation/Returns Max                      103.826
+evaluation/Returns Min                       94.6534
+evaluation/Actions Mean                       0.109309
+evaluation/Actions Std                        0.119772
+evaluation/Actions Max                        0.414161
+evaluation/Actions Min                       -0.333877
+evaluation/Num Paths                         18
+evaluation/Average Returns                   99.7074
+time/evaluation sampling (s)                  2.43841
+time/logging (s)                              0.0058177
+time/policy fn evaluation (s)                 0.829894
+time/training (s)                            55.0419
+time/epoch (s)                               58.316
+time/total (s)                              123.875
+Epoch                                         1
+---------------------------------------  --------------
+2022-06-18 16:18:13.875025 UTC | [999778_2022_06_18_16_15_12_0000--s-0] Epoch 2 finished
+---------------------------------------  ---------------
+replay_buffer/size                       999981
+trainer/QF1 Loss                             24.0788
+trainer/min QF1 Loss                         15.2712
+trainer/QF2 Loss                             24.5147
+trainer/min QF2 Loss                         15.2164
+trainer/Std QF1 values                        2.91896
+trainer/Std QF2 values                        2.88018
+trainer/QF1 in-distribution values Mean       6.66407
+trainer/QF1 in-distribution values Std       10.1575
+trainer/QF1 in-distribution values Max       31.4794
+trainer/QF1 in-distribution values Min      -13.41
+trainer/QF2 in-distribution values Mean       6.83782
+trainer/QF2 in-distribution values Std       10.104
+trainer/QF2 in-distribution values Max       30.1813
+trainer/QF2 in-distribution values Min      -12.7681
+trainer/QF1 random values Mean                3.97723
+trainer/QF1 random values Std                10.2896
+trainer/QF1 random values Max                31.4381
+trainer/QF1 random values Min               -13.083
+trainer/QF2 random values Mean                4.20321
+trainer/QF2 random values Std                10.1287
+trainer/QF2 random values Max                30.0216
+trainer/QF2 random values Min               -12.818
+trainer/QF1 next_actions values Mean          6.38988
+trainer/QF1 next_actions values Std          10.2008
+trainer/QF1 next_actions values Max          31.9528
+trainer/QF1 next_actions values Min         -12.8326
+trainer/QF2 next_actions values Mean          6.57547
+trainer/QF2 next_actions values Std          10.1424
+trainer/QF2 next_actions values Max          30.7631
+trainer/QF2 next_actions values Min         -12.4654
+trainer/actions Mean                          0.0609763
+trainer/actions Std                           0.602801
+trainer/actions Max                           0.999685
+trainer/actions Min                          -0.999999
+trainer/rewards Mean                          3.04582
+trainer/rewards Std                           0.965195
+trainer/rewards Max                           4.55297
+trainer/rewards Min                           0.740304
+trainer/Num Q Updates                      2001
+trainer/Num Policy Updates                 2001
+trainer/Policy Loss                          -7.88577
+trainer/Q1 Predictions Mean                   9.44009
+trainer/Q1 Predictions Std                    9.13709
+trainer/Q1 Predictions Max                   29.8089
+trainer/Q1 Predictions Min                   -6.67255
+trainer/Q2 Predictions Mean                   9.61331
+trainer/Q2 Predictions Std                    9.187
+trainer/Q2 Predictions Max                   30.463
+trainer/Q2 Predictions Min                   -5.82964
+trainer/Q Targets Mean                        9.38776
+trainer/Q Targets Std                         9.7124
+trainer/Q Targets Max                        29.6248
+trainer/Q Targets Min                        -7.36492
+trainer/Log Pis Mean                         -1.36205
+trainer/Log Pis Std                           1.18992
+trainer/Log Pis Max                           4.62979
+trainer/Log Pis Min                          -6.32257
+trainer/Policy mu Mean                        0.0580095
+trainer/Policy mu Std                         0.457903
+trainer/Policy mu Max                         1.17549
+trainer/Policy mu Min                        -1.73419
+trainer/Policy log std Mean                  -0.363464
+trainer/Policy log std Std                    0.398063
+trainer/Policy log std Max                    1.07555
+trainer/Policy log std Min                   -1.17448
+trainer/Alpha                                 0.823156
+trainer/Alpha Loss                           -0.848473
+exploration/num steps total                2909
+exploration/num paths total                  73
+exploration/path length Mean                106.444
+exploration/path length Std                  81.8401
+exploration/path length Max                 216
+exploration/path length Min                  22
+exploration/Rewards Mean                      2.52579
+exploration/Rewards Std                       1.10121
+exploration/Rewards Max                       5.05468
+exploration/Rewards Min                       0.756097
+exploration/Returns Mean                    268.857
+exploration/Returns Std                     252.789
+exploration/Returns Max                     619.765
+exploration/Returns Min                      21.7452
+exploration/Actions Mean                      0.0976891
+exploration/Actions Std                       0.578359
+exploration/Actions Max                       0.99991
+exploration/Actions Min                      -1
+exploration/Num Paths                         9
+exploration/Average Returns                 268.857
+evaluation/num steps total                 2961
+evaluation/num paths total                   33
+evaluation/path length Mean                 141.286
+evaluation/path length Std                    0.451754
+evaluation/path length Max                  142
+evaluation/path length Min                  141
+evaluation/Rewards Mean                       2.30662
+evaluation/Rewards Std                        0.648299
+evaluation/Rewards Max                        3.19089
+evaluation/Rewards Min                        0.964706
+evaluation/Returns Mean                     325.893
+evaluation/Returns Std                        0.556115
+evaluation/Returns Max                      326.896
+evaluation/Returns Min                      325.203
+evaluation/Actions Mean                      -0.0272866
+evaluation/Actions Std                        0.301281
+evaluation/Actions Max                        0.761472
+evaluation/Actions Min                       -0.833411
+evaluation/Num Paths                          7
+evaluation/Average Returns                  325.893
+time/evaluation sampling (s)                  2.41573
+time/logging (s)                              0.00294242
+time/policy fn evaluation (s)                 0.807253
+time/training (s)                            55.1903
+time/epoch (s)                               58.4163
+time/total (s)                              182.296
+Epoch                                         2
+---------------------------------------  ---------------
+2022-06-18 16:19:12.367411 UTC | [999778_2022_06_18_16_15_12_0000--s-0] Epoch 3 finished
+---------------------------------------  ---------------
+replay_buffer/size                       999981
+trainer/QF1 Loss                             26.5317
+trainer/min QF1 Loss                         14.6163
+trainer/QF2 Loss                             25.6027
+trainer/min QF2 Loss                         14.3579
+trainer/Std QF1 values                        3.25841
+trainer/Std QF2 values                        3.23008
+trainer/QF1 in-distribution values Mean       5.68957
+trainer/QF1 in-distribution values Std       13.0729
+trainer/QF1 in-distribution values Max       38.1374
+trainer/QF1 in-distribution values Min      -21.4597
+trainer/QF2 in-distribution values Mean       5.56975
+trainer/QF2 in-distribution values Std       13.0582
+trainer/QF2 in-distribution values Max       37.8185
+trainer/QF2 in-distribution values Min      -21.6887
+trainer/QF1 random values Mean                2.32373
+trainer/QF1 random values Std                13.4371
+trainer/QF1 random values Max                37.2857
+trainer/QF1 random values Min               -21.51
+trainer/QF2 random values Mean                2.29033
+trainer/QF2 random values Std                13.4414
+trainer/QF2 random values Max                37.7034
+trainer/QF2 random values Min               -22.2137
+trainer/QF1 next_actions values Mean          5.34439
+trainer/QF1 next_actions values Std          13.1752
+trainer/QF1 next_actions values Max          37.8896
+trainer/QF1 next_actions values Min         -21.4949
+trainer/QF2 next_actions values Mean          5.24591
+trainer/QF2 next_actions values Std          13.1865
+trainer/QF2 next_actions values Max          38.6145
+trainer/QF2 next_actions values Min         -22.0108
+trainer/actions Mean                          0.0445689
+trainer/actions Std                           0.605686
+trainer/actions Max                           0.997099
+trainer/actions Min                          -0.999994
+trainer/rewards Mean                          3.06336
+trainer/rewards Std                           0.895852
+trainer/rewards Max                           4.62433
+trainer/rewards Min                           0.823461
+trainer/Num Q Updates                      3001
+trainer/Num Policy Updates                 3001
+trainer/Policy Loss                          -6.34791
+trainer/Q1 Predictions Mean                   8.36508
+trainer/Q1 Predictions Std                   12.4397
+trainer/Q1 Predictions Max                   37.4404
+trainer/Q1 Predictions Min                  -12.6743
+trainer/Q2 Predictions Mean                   8.28832
+trainer/Q2 Predictions Std                   12.5434
+trainer/Q2 Predictions Max                   38.1208
+trainer/Q2 Predictions Min                  -13.2819
+trainer/Q Targets Mean                        8.5922
+trainer/Q Targets Std                        12.95
+trainer/Q Targets Max                        36.9898
+trainer/Q Targets Min                       -15.4957
+trainer/Log Pis Mean                         -1.15998
+trainer/Log Pis Std                           1.35955
+trainer/Log Pis Max                           3.16197
+trainer/Log Pis Min                          -6.22596
+trainer/Policy mu Mean                        0.0422388
+trainer/Policy mu Std                         0.526553
+trainer/Policy mu Max                         1.33402
+trainer/Policy mu Min                        -1.70146
+trainer/Policy log std Mean                  -0.428796
+trainer/Policy log std Std                    0.427524
+trainer/Policy log std Max                    0.816299
+trainer/Policy log std Min                   -1.3414
+trainer/Alpha                                 0.74763
+trainer/Alpha Loss                           -1.20952
+exploration/num steps total                3815
+exploration/num paths total                  78
+exploration/path length Mean                181.2
+exploration/path length Std                  76.1351
+exploration/path length Max                 223
+exploration/path length Min                  29
+exploration/Rewards Mean                      2.80483
+exploration/Rewards Std                       1.07581
+exploration/Rewards Max                       5.25958
+exploration/Rewards Min                       0.763002
+exploration/Returns Mean                    508.236
+exploration/Returns Std                     237.789
+exploration/Returns Max                     636.732
+exploration/Returns Min                      32.8812
+exploration/Actions Mean                      0.100664
+exploration/Actions Std                       0.602363
+exploration/Actions Max                       0.99988
+exploration/Actions Min                      -1
+exploration/Num Paths                         5
+exploration/Average Returns                 508.236
+evaluation/num steps total                 3956
+evaluation/num paths total                   38
+evaluation/path length Mean                 199
+evaluation/path length Std                    2.75681
+evaluation/path length Max                  204
+evaluation/path length Min                  196
+evaluation/Rewards Mean                       2.91888
+evaluation/Rewards Std                        0.964611
+evaluation/Rewards Max                        4.55168
+evaluation/Rewards Min                        0.917658
+evaluation/Returns Mean                     580.857
+evaluation/Returns Std                        8.42106
+evaluation/Returns Max                      595.609
+evaluation/Returns Min                      571.946
+evaluation/Actions Mean                       0.00185148
+evaluation/Actions Std                        0.404934
+evaluation/Actions Max                        0.836398
+evaluation/Actions Min                       -0.979627
+evaluation/Num Paths                          5
+evaluation/Average Returns                  580.857
+time/evaluation sampling (s)                  2.42322
+time/logging (s)                              0.00545456
+time/policy fn evaluation (s)                 0.828218
+time/training (s)                            55.234
+time/epoch (s)                               58.4909
+time/total (s)                              240.79
+Epoch                                         3
+---------------------------------------  ---------------

@@ -4,7 +4,7 @@ import copy
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
-from rlkit.torch import pytorch_util as ptu
+from rlkit.torch_d4rl import pytorch_util as ptu
 
 import gtimer as gt
 from rlkit.core.rl_algorithm import BaseRLAlgorithm
@@ -13,9 +13,10 @@ from rlkit.data_management.replay_buffer import ReplayBuffer
 from rlkit.samplers.data_collector import PathCollector
 from rlkit.samplers.data_collector.path_collector import MdpPathCollector
 import numpy as np
-from rlkit.torch.core import np_to_pytorch_batch
+from rlkit.torch_d4rl.core import np_to_pytorch_batch
 
 import torch
+from tqdm import tqdm
 
 def get_flat_params(model):
     params = []
@@ -30,12 +31,12 @@ def set_flat_params(model, flat_params, trainable_only=True):
     for p in model.parameters():
         flat_shape = int(np.prod(list(p.data.shape)))
         flat_params_to_assign = flat_params[idx:idx+flat_shape]
-      
+
         if len(p.data.shape):
             p.data = ptu.tensor(flat_params_to_assign.reshape(*p.data.shape))
         else:
             p.data = ptu.tensor(flat_params_to_assign[0])
-        idx += flat_shape  
+        idx += flat_shape
     return model
 
 class BatchRLAlgorithm(BaseRLAlgorithm, metaclass=abc.ABCMeta):
@@ -83,7 +84,7 @@ class BatchRLAlgorithm(BaseRLAlgorithm, metaclass=abc.ABCMeta):
         self._reserve_path_collector = MdpPathCollector(
             env=evaluation_env, policy=self.trainer.policy, 
         )
-    
+
     def policy_fn(self, obs):
         """
         Used when sampling actions from the policy and doing max Q-learning
@@ -95,7 +96,7 @@ class BatchRLAlgorithm(BaseRLAlgorithm, metaclass=abc.ABCMeta):
             q1 = self.trainer.qf1(state, action)
             ind = q1.max(0)[1]
         return ptu.get_numpy(action[ind]).flatten()
-    
+
     def policy_fn_discrete(self, obs):
         with torch.no_grad():
             obs = ptu.from_numpy(obs.reshape(1, -1))
@@ -164,10 +165,10 @@ class BatchRLAlgorithm(BaseRLAlgorithm, metaclass=abc.ABCMeta):
                     gt.stamp('policy fn evaluation')
 
                 self.training_mode(True)
-                for _ in range(self.num_trains_per_train_loop):
-                    train_data = self.replay_buffer.random_batch(
-                        self.batch_size)
+                for _ in tqdm(range(self.num_trains_per_train_loop)):
+                    train_data = self.replay_buffer.random_batch(self.batch_size)
                     self.trainer.train(train_data)
+
                 gt.stamp('training', unique=False)
                 self.training_mode(False)
 
@@ -178,16 +179,16 @@ class BatchRLAlgorithm(BaseRLAlgorithm, metaclass=abc.ABCMeta):
             # if epoch % 50 == 0:
             #     self._visualize(policy=True, num_dir=300, alpha=0.05, iter=epoch)
             #     print ('Saved Plots ..... %d'.format(epoch))
-    
+
     def _eval_q_custom_policy(self, custom_model, q_function):
         data_batch = self.replay_buffer.random_batch(self.batch_size)
         data_batch = np_to_pytorch_batch(data_batch)
         return self.trainer.eval_q_custom(custom_model, data_batch, q_function=q_function)
-    
+
     def eval_policy_custom(self, policy):
         """Update policy and then look at how the returns under this policy look like."""
         self._reserve_path_collector.update_policy(policy)
-        
+
         # Sampling
         eval_paths = self._reserve_path_collector.collect_new_paths(
             self.max_path_length,
@@ -198,7 +199,7 @@ class BatchRLAlgorithm(BaseRLAlgorithm, metaclass=abc.ABCMeta):
 
         eval_returns = eval_util.get_average_returns(eval_paths)
         return eval_returns
-    
+
     def plot_visualized_data(self, array_plus, array_minus, base_val, fig_label='None'):
         """Plot two kinds of visualizations here: 
            (1) Trend of loss_minus with respect to loss_plus
@@ -232,7 +233,7 @@ class BatchRLAlgorithm(BaseRLAlgorithm, metaclass=abc.ABCMeta):
         plt.xlabel('Gradient Value')
         plt.ylabel('Count')
         plt.subplot(212)
-        
+
         # Curvature
         curvature_projections = (array_plus + array_minus)*0.5
         plt.hist(curvature_projections, bins=50)
@@ -247,10 +248,10 @@ class BatchRLAlgorithm(BaseRLAlgorithm, metaclass=abc.ABCMeta):
         policy_weights = get_flat_params(self.trainer.policy)
         # qf1_weights = get_flat_params(self.trainer.qf1)
         # qf2_weights = get_flat_params(self.trainer.qf2)
-        
+
         policy_dim = policy_weights.shape[0]
         # qf_dim = qf1_weights.shape[0]
-        
+
         # Create clones to assign weights
         policy_clone = copy.deepcopy(self.trainer.policy)
 

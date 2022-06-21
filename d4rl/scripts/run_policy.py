@@ -1,5 +1,5 @@
 from rlkit.samplers.rollout_functions import rollout
-from rlkit.torch.pytorch_util import set_gpu_mode
+from rlkit.torch_d4rl.pytorch_util import set_gpu_mode
 import argparse
 import torch
 import uuid

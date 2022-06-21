@@ -1,12 +1,12 @@
-import rlkit.torch.pytorch_util as ptu
+import rlkit.torch_d4rl.pytorch_util as ptu
 from rlkit.data_management.env_replay_buffer import EnvReplayBuffer
 from rlkit.envs.wrappers import NormalizedBoxEnv
 from rlkit.launchers.launcher_util import setup_logger
 from rlkit.samplers.data_collector import MdpPathCollector, CustomMDPPathCollector
-from rlkit.torch.sac.policies import TanhGaussianPolicy, MakeDeterministic
-from rlkit.torch.sac.cql import CQLTrainer
-from rlkit.torch.networks import FlattenMlp
-from rlkit.torch.torch_rl_algorithm import TorchBatchRLAlgorithm
+from rlkit.torch_d4rl.sac.policies import TanhGaussianPolicy, MakeDeterministic
+from rlkit.torch_d4rl.sac.cql import CQLTrainer
+from rlkit.torch_d4rl.networks import FlattenMlp
+from rlkit.torch_d4rl.torch_rl_algorithm import TorchBatchRLAlgorithm
 
 import argparse, os
 import numpy as np
@@ -19,8 +19,8 @@ def load_hdf5(dataset, replay_buffer):
     replay_buffer._next_obs = dataset['next_observations']
     replay_buffer._actions = dataset['actions']
     # Center reward for Ant-Maze
-    replay_buffer._rewards = (np.expand_dims(dataset['rewards'], 1) - 0.5)*4.0   
-    replay_buffer._terminals = np.expand_dims(dataset['terminals'], 1)  
+    replay_buffer._rewards = (np.expand_dims(dataset['rewards'], 1) - 0.5)*4.0
+    replay_buffer._terminals = np.expand_dims(dataset['terminals'], 1)
     replay_buffer._size = dataset['terminals'].shape[0]
     print ('Number of terminals on: ', replay_buffer._terminals.sum())
     replay_buffer._top = replay_buffer._size
@@ -28,7 +28,7 @@ def load_hdf5(dataset, replay_buffer):
 def experiment(variant):
     eval_env = gym.make(variant['env_name'])
     expl_env = eval_env
-    
+
     obs_dim = expl_env.observation_space.low.size
     action_dim = eval_env.action_space.low.size
 
@@ -56,7 +56,7 @@ def experiment(variant):
     policy = TanhGaussianPolicy(
         obs_dim=obs_dim,
         action_dim=action_dim,
-        hidden_sizes=[M, M, M], 
+        hidden_sizes=[M, M, M],
     )
     eval_policy = MakeDeterministic(policy)
     eval_path_collector = MdpPathCollector(
@@ -69,7 +69,7 @@ def experiment(variant):
     buffer_filename = None
     if variant['buffer_filename'] is not None:
         buffer_filename = variant['buffer_filename']
-    
+
     replay_buffer = EnvReplayBuffer(
         variant['replay_buffer_size'],
         expl_env,
@@ -78,7 +78,7 @@ def experiment(variant):
         replay_buffer.load_buffer(buffer_filename)
     else:
         load_hdf5(d4rl.qlearning_dataset(eval_env), replay_buffer)
-       
+
     trainer = CQLTrainer(
         env=eval_env,
         policy=policy,

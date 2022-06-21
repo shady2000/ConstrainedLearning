@@ -4,7 +4,7 @@ Torch argmax policy
 import numpy as np
 from torch import nn
 
-import rlkit.torch.pytorch_util as ptu
+import rlkit.torch_d4rl.pytorch_util as ptu
 from rlkit.policies.base import Policy
 
 

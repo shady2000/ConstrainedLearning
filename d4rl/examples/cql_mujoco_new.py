@@ -1,12 +1,14 @@
-import rlkit.torch.pytorch_util as ptu
+#import sys
+#sys.path.append('/media/Z/shun/projects/ConstrainedLearning/d4rl')
+import rlkit.torch_d4rl.pytorch_util as ptu
 from rlkit.data_management.env_replay_buffer import EnvReplayBuffer
 from rlkit.envs.wrappers import NormalizedBoxEnv
 from rlkit.launchers.launcher_util import setup_logger
 from rlkit.samplers.data_collector import MdpPathCollector, CustomMDPPathCollector
-from rlkit.torch.sac.policies import TanhGaussianPolicy, MakeDeterministic
-from rlkit.torch.sac.cql import CQLTrainer
-from rlkit.torch.networks import FlattenMlp
-from rlkit.torch.torch_rl_algorithm import TorchBatchRLAlgorithm
+from rlkit.torch_d4rl.sac.policies import TanhGaussianPolicy, MakeDeterministic
+from rlkit.torch_d4rl.sac.cql import CQLTrainer
+from rlkit.torch_d4rl.networks import FlattenMlp
+from rlkit.torch_d4rl.torch_rl_algorithm import TorchBatchRLAlgorithm
 
 import argparse, os
 import numpy as np
@@ -19,7 +21,7 @@ def load_hdf5(dataset, replay_buffer):
     replay_buffer._next_obs = dataset['next_observations']
     replay_buffer._actions = dataset['actions']
     replay_buffer._rewards = np.expand_dims(np.squeeze(dataset['rewards']), 1)
-    replay_buffer._terminals = np.expand_dims(np.squeeze(dataset['terminals']), 1)  
+    replay_buffer._terminals = np.expand_dims(np.squeeze(dataset['terminals']), 1)
     replay_buffer._size = dataset['terminals'].shape[0]
     print ('Number of terminals on: ', replay_buffer._terminals.sum())
     replay_buffer._top = replay_buffer._size
@@ -27,7 +29,6 @@ def load_hdf5(dataset, replay_buffer):
 def experiment(variant):
     eval_env = gym.make(variant['env_name'])
     expl_env = eval_env
-    
     obs_dim = expl_env.observation_space.low.size
     action_dim = eval_env.action_space.low.size
 
@@ -55,7 +56,7 @@ def experiment(variant):
     policy = TanhGaussianPolicy(
         obs_dim=obs_dim,
         action_dim=action_dim,
-        hidden_sizes=[M, M, M], 
+        hidden_sizes=[M, M, M],
     )
     eval_policy = MakeDeterministic(policy)
     eval_path_collector = MdpPathCollector(
@@ -65,21 +66,23 @@ def experiment(variant):
     expl_path_collector = CustomMDPPathCollector(
         eval_env,
     )
+
     buffer_filename = None
     if variant['buffer_filename'] is not None:
         buffer_filename = variant['buffer_filename']
-    
+
     replay_buffer = EnvReplayBuffer(
         variant['replay_buffer_size'],
         expl_env,
     )
+
     if variant['load_buffer'] and buffer_filename is not None:
         replay_buffer.load_buffer(buffer_filename)
     elif 'random-expert' in variant['env_name']:
-        load_hdf5(d4rl.basic_dataset(eval_env), replay_buffer) 
+        load_hdf5(d4rl.basic_dataset(eval_env), replay_buffer)
     else:
         load_hdf5(d4rl.qlearning_dataset(eval_env), replay_buffer)
-       
+
     trainer = CQLTrainer(
         env=eval_env,
         policy=policy,
@@ -89,6 +92,7 @@ def experiment(variant):
         target_qf2=target_qf2,
         **variant['trainer_kwargs']
     )
+
     algorithm = TorchBatchRLAlgorithm(
         trainer=trainer,
         exploration_env=expl_env,
@@ -100,11 +104,12 @@ def experiment(variant):
         batch_rl=variant['load_buffer'],
         **variant['algorithm_kwargs']
     )
+
     algorithm.to(ptu.device)
     algorithm.train()
 
 def enable_gpus(gpu_str):
-    if (gpu_str is not ""):
+    if (gpu_str != ""):
         os.environ["CUDA_VISIBLE_DEVICES"] = gpu_str
     return
 
@@ -113,7 +118,7 @@ if __name__ == "__main__":
     variant = dict(
         algorithm="CQL",
         version="normal",
-        layer_size=256,
+        layer_size=128,
         replay_buffer_size=int(2E6),
         buffer_filename=None,
         load_buffer=None,
@@ -122,11 +127,11 @@ if __name__ == "__main__":
         algorithm_kwargs=dict(
             num_epochs=3000,
             num_eval_steps_per_epoch=1000,
-            num_trains_per_train_loop=1000,  
+            num_trains_per_train_loop=1000,
             num_expl_steps_per_train_loop=1000,
             min_num_steps_before_training=1000,
             max_path_length=1000,
-            batch_size=256,
+            batch_size=512,
         ),
         trainer_kwargs=dict(
             discount=0.99,
@@ -148,14 +153,14 @@ if __name__ == "__main__":
             # lagrange
             with_lagrange=True,   # Defaults to true
             lagrange_thresh=10.0,
-            
+
             # extra params
             num_random=10,
             max_q_backup=False,
             deterministic_backup=False,
         ),
     )
-    
+
     parser = argparse.ArgumentParser()
     parser.add_argument("--env", type=str, default='hopper-medium-v0')
     parser.add_argument("--gpu", default='0', type=str)
@@ -164,7 +169,7 @@ if __name__ == "__main__":
     parser.add_argument("--policy_eval_start", default=40000, type=int)       # Defaulted to 20000 (40000 or 10000 work similarly)
     parser.add_argument('--min_q_weight', default=1.0, type=float)            # the value of alpha, set to 5.0 or 10.0 if not using lagrange
     parser.add_argument('--policy_lr', default=1e-4, type=float)              # Policy learning rate
-    parser.add_argument('--min_q_version', default=3, type=int)               # min_q_version = 3 (CQL(H)), version = 2 (CQL(rho)) 
+    parser.add_argument('--min_q_version', default=3, type=int)               # min_q_version = 3 (CQL(H)), version = 2 (CQL(rho))
     parser.add_argument('--lagrange_thresh', default=5.0, type=float)         # the value of tau, corresponds to the CQL(lagrange) version
     parser.add_argument('--seed', default=10, type=int)
 
@@ -179,7 +184,7 @@ if __name__ == "__main__":
     variant['trainer_kwargs']['lagrange_thresh'] = args.lagrange_thresh
     if args.lagrange_thresh < 0.0:
         variant['trainer_kwargs']['with_lagrange'] = False
-    
+
     variant['buffer_filename'] = None
 
     variant['load_buffer'] = True
@@ -187,6 +192,6 @@ if __name__ == "__main__":
     variant['seed'] = args.seed
 
     rnd = np.random.randint(0, 1000000)
-    setup_logger(os.path.join('CQL_offline_mujoco_runs', str(rnd)), variant=variant, base_log_dir='/nfs/kun1/users/aviralkumar/random_expert_CQL_runs')
+    setup_logger(os.path.join('CQL_offline_mujoco_runs', str(rnd)), variant=variant, base_log_dir='/media/Z/shun/projects/ConstrainedLearning/random_expert_CQL_runs')
     ptu.set_gpu_mode(True)
     experiment(variant)

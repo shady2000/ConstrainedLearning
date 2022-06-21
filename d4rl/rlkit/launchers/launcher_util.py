@@ -14,7 +14,7 @@ import numpy as np
 
 from rlkit.core import logger
 from rlkit.launchers import conf
-from rlkit.torch.pytorch_util import set_gpu_mode
+from rlkit.torch_d4rl.pytorch_util import set_gpu_mode
 import rlkit.pythonplusplus as ppp
 
 GitInfo = namedtuple(

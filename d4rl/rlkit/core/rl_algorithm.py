@@ -20,7 +20,6 @@ def _get_epoch_timings():
     times['time/total (s)'] = gt.get_times().total
     return times
 
-
 class BaseRLAlgorithm(object, metaclass=abc.ABCMeta):
     def __init__(
             self,
